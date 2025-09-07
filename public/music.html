@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DSM - HOME</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+        <link rel="icon" type="image/x-icon" href="other-images/doubleshroom-favicon.ico">
+    </head>
+    <body class="iframe">
+        <div id="first" class="coll-one">
+            <h1>LEVEL 1</h1>
+            <div id="second" class="coll-two">
+                <h3>LEVEL 2</h3>
+                <div class="coll-three">
+                    <span>LEVEL 3</span>
+                </div>
+            </div>
+            <h1>LEVEL 1-2</h1>
+            <div id="third" class="coll-two">
+                <h3>LEVEL 2</h3>
+                <div class="coll-three">
+                    <span>LEVEL 3</span>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.collapsible.js"></script>
+    <script type="text/javascript">
+        $('#first').collapsible('accordion-open', {contentOpen: 1});
+        $('#second').collapsible('accordion-open', {contentOpen: 1});
+        $('#third').collapsible('accordion-open', {contentOpen: 1});
+    </script>
+    <script type="text/javascript" src="js/music.js"></script>
+</html>

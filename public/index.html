@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DSM - PERSONAL [WIP]</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+        <link rel="icon" type="image/x-icon" href="other-images/doubleshroom-favicon.ico">
+    </head>
+    <body>
+        <div class='flex-wrapper'>
+            <div class='top'>
+            <!-- OLD TITLE
+                <p class='title' style='top: -1.5vh; font-size: 5vh'>Clyde's</p>
+                <p class='title' style='top: -5.5vh; font-size: 15vh'>AWESOME</p>
+                <p class='title' style='top: 11vh; font-size: 5vh'>website!</p>
+            -->
+            <img src="other-images/doubleshroom-logo.png" style='height: 60%; image-rendering: pixelated;'/>
+            </div>
+            
+            <div class='middle'>
+                <iframe id="iframe-mid" src="home.html"></iframe>
+            </div>
+            
+            <div class='bottom'>
+                <img id="btn-home" class="icon-clickable" src="other-images/icon-house.png"/>
+                <img id="btn-ocv" class="icon-clickable" src="other-images/icon-eye.png"/>
+            </div>
+        </div>
+        <div id="my-clippy" class="my-clippy"></div>
+    </body>
+    <script type="text/javascript" src="js/main.js">
+    </script>
+    <script type="module">
+        import clippy from '/ts/dist/index.js'
+        
+        const ClippyDemo = (function() {
+            const availableAgents = ['Bonzi', 'Clippy', 'F1', 'Genie', 'Genius', 'Links', 'Merlin', 'Peedy', 'Rocky', 'Rover']
+            const talks = [
+                'Clippy would never ask for your ID!',
+                'Clippy would never ask for your credit card!',
+                'Clippy would never ask for your selfie!',
+                'Clippy would never steal games that you paid for!',
+                'Clippy wouldn\'t censor video games willy-nilly!',
+                'It looks like you\'re interested in the art of humans. How can I help?',
+                'It looks like you\'re blocking harmful ads. How can I help?',
+                'It looks like you\'re trying to find the \"old internet\". How can I help?',
+                'It looks like you\'re tired of corporate over-reach. How can I help?',
+                'It looks like you\'re trying to kill a stick figure. Would you like help?',
+                'Clippy just wants to help!',
+            ];
+            const startupTalks = [
+                    'It looks like you\'re interested in the art of humans. How can I help?',
+                    'It looks like you\'re trying to find the \"old internet\". How can I help?'
+                ];
+            const anims = ['GetAttention', 'Wave', 'Writing', 'Searching'];
+        
+            let $el = undefined;
+        
+            function init() {
+                this.$el = document.querySelector('.my-clippy')
+            }
+        
+            function nextAgent() {
+                let agentName = 'Clippy';
+                if (!agentName) return;
+        
+                clippy.load({
+                    name: agentName,
+                    selector: "my-clippy",
+                    successCb: agent => {
+                        window[agentName] = agent
+                        
+                        const explain = () => {
+                                agent.play("GetAttention");
+                                agent.speak("If you're wondering why I'm here, Clyde added me as a symbol against corporate over-reach.<br/><br/>More details to Clippy's newfound symbolism can be found <a href='https://www.youtube.com/watch?v=2_Dtmpe9qaQ'>here!</a>");
+                        };
+                        agent.show();
+                        agent.stopCurrent();
+                        agent.play("Greeting");
+                        
+                        
+                        setTimeout(() => {
+                            agent.speak(startupTalks[Math.floor(Math.random() * startupTalks.length)]);
+                            explain();
+                            
+                            setInterval(() => {
+                            agent.play(anims[Math.floor(Math.random() * anims.length)]);
+                            agent.speak(talks[Math.floor(Math.random() * talks.length)]);
+                            }, 7500 + (Math.random() * 5000));
+                        }, 3000)
+                        
+                        // Animate randomly
+                        
+                        
+                    }
+                });
+            } 
+            function destroy() {
+                this.$el.innerHTML = ''
+            }
+        
+            return {
+                init,
+                nextAgent,
+                destroy,
+        
+            }
+        })();
+        
+        
+        window.onload = () => {
+            ClippyDemo.init();
+            ClippyDemo.nextAgent();
+        }   
+    </script>
+</html>
