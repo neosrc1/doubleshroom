@@ -231,7 +231,7 @@ function imgIndexFinder() {
     var imgNode = document.getElementById("ocv-img");
     var currentEntry = OCEntryArray[entryIndexFinder()];
     currentEntry.imgCollection.forEach(function(currentValue, index) {
-        if (currentValue.imgPath == imgNode.src.slice(35)) {
+        if (currentValue.imgPath == imgNode.src.split("/").reverse()[1] + "/" + imgNode.src.split("/").reverse()[0]) {
             output = index;
         }
     });
