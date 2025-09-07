@@ -353,3 +353,5 @@ document.getElementById("right-arrow").addEventListener("click", () => navigateT
 document.getElementById("img-left-arrow").addEventListener("click", () => previousImg());
 document.getElementById("img-right-arrow").addEventListener("click", () => nextImg());
 document.getElementById("globe-container").addEventListener("click", () => universalSwitch());
+
+// Push test!
